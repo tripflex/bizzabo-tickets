@@ -123,11 +123,18 @@ module.exports = function( grunt ) {
 				src: [ '**/**' ]
 			}
 		},
+		wp_readme_to_markdown: {
+			plugin: {
+				files: {
+					'readme.md': 'readme.txt'
+				},
+			},
+		},
 	} );
 
 	// Default task.
 	grunt.registerTask( 'scripts', [] );
-	grunt.registerTask( 'deploy', [ 'clean', 'copy', 'compress' ] );
+	grunt.registerTask( 'deploy', [ 'clean', 'wp_readme_to_markdown' ,'copy', 'compress' ] );
 	grunt.registerTask( 'styles', [] );
 	grunt.registerTask( 'php', [ 'addtextdomain', 'makepot' ] );
 	grunt.registerTask( 'default', ['styles', 'scripts', 'php'] );
