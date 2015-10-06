@@ -20,7 +20,8 @@ module.exports = function( grunt ) {
 	grunt.initConfig( {
 
 		pkg: pkg,
-
+		build: { js: 'assets/js/build', css: 'assets/css/build', dir: 'dist/<%= pkg.version %>/<%= pkg.name %>' },
+		min: { css: 'assets/css', js: 'assets/js' },
 
 		watch:  {
 			styles: {
@@ -72,12 +73,61 @@ module.exports = function( grunt ) {
 					}
 				}
 			}
-		}
+		},
+		copy: {
+			deploy: {
+				src: [
+					'**',
+					'!.bowerrc',
+					'!.travis.yml',
+					'!.yo-rc.json',
+					'!bower.json',
+					'!phpunit.xml',
+					'!Gruntfile.js',
+					'!dist/**',
+					'!package.json',
+					'!node_modules/**',
+					'!includes/**/node_modules/**',
+					'!includes/**/Gruntfile.js',
+					'!includes/**/package.json',
+					'!bin/**',
+					'!tests/**',
+				],
+				dest: '<%= build.dir %>/',
+				expand: true
+			},
+			pot: {
+				src: '<%= build.dir %>/languages/<%= pkg.name %>.pot',
+				dest: 'languages/<%= pkg.name %>.pot',
+				expand: false
+			}
+		},
 
+		clean: {
+			deploy: {
+				src: [ '<%= build.dir %>/' ]
+			},
+			dist: {
+				src: [ 'dist/*' ]
+			}
+		},
+
+		compress: {
+			plugin: {
+				options: {
+					archive: 'dist/<%= pkg.name %>_<%= pkg.version %>.zip'
+				},
+				expand: true,
+				cwd: '<%= build.dir %>/',
+				dest: '<%= pkg.name %>',
+				src: [ '**/**' ]
+			}
+		},
 	} );
 
 	// Default task.
 	grunt.registerTask( 'scripts', [] );
+	grunt.registerTask( 'deploy', [ 'clean', 'copy', 'compress' ] );
 	grunt.registerTask( 'styles', [] );
 	grunt.registerTask( 'php', [ 'addtextdomain', 'makepot' ] );
 	grunt.registerTask( 'default', ['styles', 'scripts', 'php'] );
