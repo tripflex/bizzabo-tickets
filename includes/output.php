@@ -26,11 +26,15 @@ class Bizzabo_Tickets_Output {
 	}
 
 	/**
+	 * Output an Event Template File
+	 *
 	 * @param $template
-	 * @param $event_id
+	 * @param $event_id Event ID to use for the template
 	 * @return mixed|string
 	 */
 	public function template( $template, $event_id ){
+
+		if( empty( $event_id ) ) return __( 'Error: Unable to determine Event ID.  Please contact the Website Administrator for assistance.' );
 		// Start output buffering
 		ob_start();
 		$file = Bizzabo_Tickets::dir( 'templates/'. $template .'.php' );
