@@ -1,0 +1,17 @@
+{
+  "generator-plugin-wp": {
+    "name": "Bizzabo Tickets",
+    "homepage": "https://www.bizzabo.com",
+    "description": "Output event ticketing through Widget or Shortcode",
+    "version": "0.1.0",
+    "author": "Myles McNamara",
+    "authoremail": "myles@smyl.es",
+    "authorurl": "https://smyl.es",
+    "license": "GPLv3",
+    "slug": "bizzabo-tickets",
+    "classname": "Bizzabo_Tickets",
+    "classprefix": "Bizzabo_Tickets_",
+    "prefix": "bizzabo_tickets",
+    "year": 2015
+  }
+}

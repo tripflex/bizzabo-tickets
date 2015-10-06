@@ -1,0 +1,17 @@
+{
+	"name": "bizzabo-tickets",
+	"title": "Bizzabo Tickets",
+	"version": "0.1.0",
+	"description": "Output event ticketing through Widget or Shortcode",
+	"author": {
+		"name": "Myles McNamara",
+		"url": "https://smyl.es"
+	},
+	"license": "GPLv3",
+	"devDependencies": {
+	    "grunt": "latest",
+	    "grunt-contrib-watch": "latest",
+	    "grunt-wp-i18n": "latest",
+	    "load-grunt-tasks": "latest"
+	}
+}
